@@ -1,3 +1,20 @@
-<p>
-  edit works!
-</p>
+<form (ngSubmit)="submit()" [formGroup]="editForm" novalidate>
+  <div class="text-center">
+      <img [src]="image"  class="img-circle" alt width="150" ></div>  
+  <div class="form-group">
+      <label for="name">Name:</label>
+      <input formControlName="name" class="form-control" id="name" placeholder="Enter user full name" name="name">
+    </div>
+    <div *ngIf="!editForm.controls.name.valid && editForm.controls.name.touched" class="form-group alert alert-warning">
+      <strong> please enter user full name </strong>
+    </div>
+    <div class="form-group">
+      <label for="job">Job:</label>
+      <input formControlName="job" class="form-control" id="job" placeholder="Enter Job Title" name="job">
+    </div>
+    <div *ngIf="!editForm.controls.job.valid && editForm.controls.job.touched" class="alert alert-warning">
+      <strong> please enter job </strong>
+    </div>
+    <a routerLink="/users" class="btn btn-default">Cancel</a>
+    <button type="submit" [disabled]="!editForm.valid" type="submit" class="btn btn-success">Save</button>
+  </form>

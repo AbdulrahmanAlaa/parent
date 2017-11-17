@@ -7,10 +7,7 @@ import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
-  {
-    path: ':id',
-    component:SingleComponent
-  },
+  
   {
     path:'',
     component:ListComponent
@@ -20,13 +17,17 @@ const routes: Routes = [
     component:DeleteComponent
   },
   {
-    path:'create',
+    path:'add',
     component:AddComponent
   },
   {
     path:'edit/:id',
     component:EditComponent
-  }
+  },
+  {
+    path: ':id',
+    component:SingleComponent
+  },
 
 ];
 

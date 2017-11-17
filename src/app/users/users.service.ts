@@ -26,9 +26,8 @@ export class UsersService {
    * @param page Page number To lazy load data 
    */
   getUser(id: number) {
-    return this.http.get(API_URLS.USERS.SINGLE(id)).map((user) => {
-      console.log(user);
-      return user;
+    return this.http.get(API_URLS.USERS.SINGLE(id)).map((response:any) => {
+      return response.data;
     });
   }
   /**
@@ -47,5 +46,11 @@ export class UsersService {
    */
   updateUser(user:User){
    return this.http.put(API_URLS.USERS.EDIT(user.id),user);
+  }
+  /**
+   * Create User 
+   */
+  create(user:User){
+    return this.http.post(API_URLS.USERS.ADD,user);
   }
 }

@@ -1,14 +1,23 @@
+<div class="row col-lg-12">
+  <a id="createUser" routerLink="add" class="btn btn-default btn-md">
+    Create User <span class="glyphicon glyphicon-plus-sign"></span>
+  </a>
+</div>
 <div (window:scroll)="onScroll($event)" >
   <div *ngFor="let user of users" class="panel panel-default col-lg-4">
     <div class="panel-body text-center">
       <img [src]="user.avatar"  class="img-circle" alt="Cinque Terre" width="150" >
       <h4>{{user.first_name}} {{user.last_name}} </h4>
       <div class="text-center">
-        <a class="btn btn-danger" >
+        <a (click)="delete(user)" class="btn btn-danger">
           <span class="glyphicon glyphicon-trash"></span>
         </a>
-        <a class="btn btn-default">
+        <a (click)="edit(user)" class="btn btn-default">
           <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+        
+        <a (click)="view(user)" class="btn btn-default">
+          <span class="glyphicon glyphicon-eye-open"></span>
         </a>
       </div>
     </div>

@@ -1,3 +1,18 @@
-<p>
-  add works!
-</p>
+<form (ngSubmit)="submit()" [formGroup]="createForm" novalidate>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input formControlName="name" class="form-control" id="name" placeholder="Enter user full name" name="name">
+  </div>
+  <div *ngIf="!createForm.controls.name.valid && createForm.controls.name.touched" class="form-group alert alert-warning">
+    <strong> please enter user full name </strong>
+  </div>
+  <div class="form-group">
+    <label for="job">Job:</label>
+    <input formControlName="job" class="form-control" id="job" placeholder="Enter Jon Title" name="job">
+  </div>
+  <div *ngIf="!createForm.controls.job.valid && createForm.controls.job.touched" class="alert alert-warning">
+    <strong> please enter job </strong>
+  </div>
+  <a routerLink="/users" class="btn btn-default">Cancel</a>
+  <button type="submit" [disabled]="!createForm.valid" type="submit" class="btn btn-success">Create</button>
+</form>
