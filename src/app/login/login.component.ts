@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public toastr: ToastsManager,
     private vcr: ViewContainerRef
   ) {
+        /** holds the needed html to show the toaster */
     this.toastr.setRootViewContainerRef(vcr);
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],

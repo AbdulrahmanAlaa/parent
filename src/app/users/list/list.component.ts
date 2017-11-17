@@ -22,6 +22,7 @@ export class ListComponent implements OnInit {
     public toastr: ToastsManager,
     private vcr: ViewContainerRef
   ) {
+    /** holds the needed html to show the toaster */
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -85,8 +86,8 @@ export class ListComponent implements OnInit {
    * 
    * @param user Show Detailed Info for specific User
    */
-  view(user:User){
-    this.router.navigate([config.users.name+`/${user.id}`])
+  view(user: User) {
+    this.router.navigate([config.users.name + `/${user.id}`])
   }
 
 }

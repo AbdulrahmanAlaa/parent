@@ -16,6 +16,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class AddComponent {
   public createForm: FormGroup
+  
   constructor(
     private router: Router,
     public toastr: ToastsManager,
