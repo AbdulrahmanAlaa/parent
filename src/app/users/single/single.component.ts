@@ -8,7 +8,7 @@ import { UsersService } from '../users.service';
   templateUrl: './single.component.html',
   styleUrls: ['./single.component.scss']
 })
-export class SingleComponent implements OnInit {
+export class SingleComponent  {
   id: number;
   user;
   constructor(
@@ -26,7 +26,5 @@ export class SingleComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
 
 }

@@ -11,11 +11,15 @@ export class AuthenticationGuard implements CanActivate {
   ) {
 
   }
+  /**
+   * Ensure the User is Logged in To Show the Data
+   * @param next 
+   * @param state 
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     let isAuthenticated: boolean = this.authService.isAuthenticated();
-    console.log('isAuthenticated',isAuthenticated)
     if (!isAuthenticated) {
       this.router.navigate([config.login.name]);
     }

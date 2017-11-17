@@ -12,19 +12,33 @@ export class AuthService {
   constructor(
     private router:Router,
     private storageService: StorageService, private http: HttpClient) { }
-  isAuthenticated() {
+  
+    /**
+     * Check If The User Logged in Or Not
+     */
+    isAuthenticated() {
     sessionStorage.getItem(DEFINES.TOKEN);
     return (this.storageService.Token || sessionStorage.getItem(DEFINES.TOKEN)|| localStorage.getItem(DEFINES.TOKEN)) ? true : false;
   }
+
+  /**
+   * Clear User Sessions and LogOut 
+   */
   logout(){
     this.storageService.Token = null;
     sessionStorage.clear();
     localStorage.clear();
     this.router.navigate[config.login.name]
   }
+
+  /**
+   * Check the user validity against the api to authenticate the User 
+   * @param email string 
+   * @param password string
+   * @param rememberMe boolean indicates to save the user after browser closes
+   */
   authenticate(email: string, password: string, rememberMe: boolean) {
     return this.http.post(API_URLS.LOGIN, { email, password }).map((response: { token: string }) => {
-      console.log('token:', response.token);
       if (response) {
         if (rememberMe) {
           localStorage.setItem(DEFINES.TOKEN,response.token);

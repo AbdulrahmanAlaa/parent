@@ -36,7 +36,6 @@ export class UsersService {
    */
   deleteUser(id: number) {
     return this.http.delete(API_URLS.USERS.DELETE(id)).map((user) => {
-      console.log(user);
       return user;
     });
   }

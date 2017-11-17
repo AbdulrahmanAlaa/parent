@@ -7,10 +7,12 @@ import { AuthService } from './shared/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-constructor(private authService:AuthService){
-
-}
+  constructor(private authService: AuthService) {
+  }
+  /**
+   * Log The User Out And Clear All the Sessions
+   */
   logout() {
-this.authService.logout();
+    this.authService.logout();
   }
 }

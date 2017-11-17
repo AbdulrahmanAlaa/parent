@@ -47,7 +47,6 @@ export class ListComponent implements OnInit {
  * Loading 9 videos from server each time user scrolls
  */
   loadTenItems() {
-    console.log('loading...');
     this.usersService.getUsers(++this.pageNo).subscribe((page: IPage) => {
       this.users.push(...page.data);
       if (page.data.length > 0) {

@@ -1,3 +1,6 @@
+/**
+ * Holds the User Used In The Whole App
+ */
 export interface User {
     id?: number;
     first_name: string;

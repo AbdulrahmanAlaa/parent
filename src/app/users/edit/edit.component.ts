@@ -11,18 +11,19 @@ import { config } from '../../../config/pages-config';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent implements OnInit {
+export class EditComponent  {
   editForm: FormGroup;
   private id;
-  image:string;
+  image: string;
   constructor(
-    private router:Router,
+    private router: Router,
     public toastr: ToastsManager,
     private vcr: ViewContainerRef,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private usersService: UsersService
   ) {
+    /** holds the needed html to show the toaster */
     this.toastr.setRootViewContainerRef(vcr);
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
@@ -31,7 +32,7 @@ export class EditComponent implements OnInit {
         job: ['', Validators.required]
       });
       this.usersService.getUser(this.id).subscribe((user: User) => {
-        
+
         this.image = user.avatar;
         this.editForm = fb.group({
           name: [`${user.first_name} ${user.last_name}`, Validators.required],
@@ -41,8 +42,9 @@ export class EditComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  /**
+   * Updates The Current User Data
+   */
   submit() {
     if (this.editForm.valid) {
       let user = {
