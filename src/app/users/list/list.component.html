@@ -1,7 +1,16 @@
-<div *ngFor="let user of users" class="panel panel-default col-lg-4">
-  <div class="panel-body">
-    <h2>{{`${user.first_name} ${user.last_name}` }}</h2>
-    <p>The .img-circle class shapes the image to a circle (not available in IE8):</p>
-    <img src="https://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-circle" alt="Cinque Terre" width="304" height="236">
+<div (window:scroll)="onScroll($event)" >
+  <div *ngFor="let user of users" class="panel panel-default col-lg-4">
+    <div class="panel-body text-center">
+      <img [src]="user.avatar"  class="img-circle" alt="Cinque Terre" width="150" >
+      <h4>{{user.first_name}} {{user.last_name}} </h4>
+      <div class="text-center">
+        <a class="btn btn-danger" >
+          <span class="glyphicon glyphicon-trash"></span>
+        </a>
+        <a class="btn btn-default">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>

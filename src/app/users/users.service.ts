@@ -16,7 +16,7 @@ export class UsersService {
    * Get All users From Api  
    * @param page 
    */
-  getUsers(page: number,per_page:number = 12) {
+  getUsers(page: number,per_page:number = 9) {
     return this.http.get(API_URLS.USERS.LIST(page,per_page)).map((page:IPage ) => {
       return page;
     });

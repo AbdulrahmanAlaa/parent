@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+
 import { UsersService } from '../users.service';
 import { User } from '../../shared/models/user.model';
 import { IPage } from '../../shared/models/page.interface';
+//3Rd party's
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'parent-list',
@@ -11,12 +14,47 @@ import { IPage } from '../../shared/models/page.interface';
 export class ListComponent implements OnInit {
   pageNo: number = 1;
   users: Array<User> = [];
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    public toastr: ToastsManager,
+    private vcr: ViewContainerRef
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
-    this.usersService.getUsers(this.pageNo).subscribe((page:IPage) => {
+    this.usersService.getUsers(this.pageNo).subscribe((page: IPage) => {
       this.users = page.data;
+      this.toastr.success('Loaded users successfully...');
+    }, (error) => {
+      this.toastr.error("Something went wrong! </br> Try agin later", "", { enableHTML: true });
     });
   }
 
+  /**
+   * Determine the scroll of page to load more items 
+   */
+  onScroll() {
+    if (Math.ceil(window.innerHeight + window.scrollY) == Math.ceil(document.body.offsetHeight)) {
+      this.loadTenItems();
+    }
+  }
+  /**
+ * Loading 10 videos from server each time user scrolls
+ */
+  loadTenItems() {
+    console.log('loading...');
+    this.usersService.getUsers(++this.pageNo).subscribe((page: IPage) => {
+      this.users.push(...page.data);
+if (page.data.length > 0) {
+  this.toastr.success('Loaded users successfully...');
+  
+}else{
+  this.toastr.warning('All data loaded!');
+  
+}
+    }, (error) => {
+      this.toastr.error("Something went wrong! </br> Try agin later", "", { enableHTML: true });
+    });
+  }
 }

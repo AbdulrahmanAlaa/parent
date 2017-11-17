@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {ReactiveFormsModule , FormsModule}from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { AuthService } from './shared/services/auth.service';
 import { StorageService } from './shared/services/storage.service';
 import { AuthenticationGuard } from './shared/authentication.guard';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
+
 
 @NgModule({
   declarations: [
@@ -17,6 +21,8 @@ import { AuthenticationGuard } from './shared/authentication.guard';
     LoginComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,

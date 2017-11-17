@@ -1,3 +1,11 @@
 .panel{
-    margin:20px;
+    margin:10px;
 } 
+@media (min-width: 1200px){
+    .col-lg-3 {
+        width: 23%;
+    }
+    .col-lg-4{
+        width: 31%
+    }
+}
