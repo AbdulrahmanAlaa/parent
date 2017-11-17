@@ -1,13 +1,7 @@
-<div class="container">
-  <div class="panel panel-default col-lg-4">
-    <div class="panel-body">
-      <h2>Image</h2>
-      <p>The .img-circle class shapes the image to a circle (not available in IE8):</p>            
-      <img src="https://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-circle" alt="Cinque Terre" width="304" height="236"> 
-    </div>
+<div *ngFor="let user of users" class="panel panel-default col-lg-4">
+  <div class="panel-body">
+    <h2>{{`${user.first_name} ${user.last_name}` }}</h2>
+    <p>The .img-circle class shapes the image to a circle (not available in IE8):</p>
+    <img src="https://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-circle" alt="Cinque Terre" width="304" height="236">
   </div>
-  <div class="panel panel-default col-lg-4">
-    <div class="panel-body">A Basic Panel</div>
-  </div>
- 
 </div>
