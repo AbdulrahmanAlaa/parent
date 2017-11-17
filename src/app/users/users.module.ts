@@ -8,12 +8,14 @@ import { ListComponent } from './list/list.component';
 import { SingleComponent } from './single/single.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
+import { UsersService } from './users.service';
 
 @NgModule({
   imports: [
     CommonModule,
     UsersRoutingModule
   ],
+  providers:[UsersService],
   declarations: [AddComponent, UsersComponent, ListComponent, SingleComponent, EditComponent, DeleteComponent]
 })
 export class UsersModule { }
