@@ -13,7 +13,7 @@ import { config } from '../../../config/pages-config';
 })
 export class EditComponent  {
   editForm: FormGroup;
-  private id;
+  public id;
   image: string;
   constructor(
     private router: Router,
@@ -50,9 +50,8 @@ export class EditComponent  {
       let user = {
         id: this.id,
         first_name: this.editForm.value.name,
-        job: this.editForm.value.name
+        job: this.editForm.value.job
       } as User;
-
       this.usersService.updateUser(user).subscribe(user => {
         this.toastr.success(`${this.editForm.value.name} Updated Successfully`);
         setTimeout(() => {

@@ -37,7 +37,7 @@ describe('AppComponent', () => {
     spyOn(service, "logout");
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    service.logout();
+    app.logout();
     expect(service.logout).toHaveBeenCalled();
   }
   ));

@@ -25,7 +25,10 @@ export class ListComponent implements OnInit {
     /** holds the needed html to show the toaster */
     this.toastr.setRootViewContainerRef(vcr);
   }
-
+  
+/**
+ * Load first bulk of Users from api
+*/
   ngOnInit() {
     this.usersService.getUsers(this.pageNo).subscribe((page: IPage) => {
       this.users = page.data;
@@ -45,7 +48,7 @@ export class ListComponent implements OnInit {
   }
 
   /**
- * Loading 9 videos from server each time user scrolls
+ * Loading 9 users from server each time user scrolls
  */
   loadTenItems() {
     this.usersService.getUsers(++this.pageNo).subscribe((page: IPage) => {
@@ -66,7 +69,7 @@ export class ListComponent implements OnInit {
    *  Delete selected user from api 
    * @param user User Object
    */
-  delete(user: User) {
+  public delete(user: User) {
     let index = this.users.indexOf(user);
     this.usersService.deleteUser(user.id).subscribe((res) => {
       this.toastr.success(`${user.first_name} ${user.last_name} deleted Successfully`);
@@ -78,7 +81,7 @@ export class ListComponent implements OnInit {
    * Modifies the user data 
    * @param user User Object
    */
-  edit(user: User) {
+  public edit(user: User) {
     this.router.navigate([config.users.route + `/edit/${user.id}`]);
   }
 
@@ -86,7 +89,7 @@ export class ListComponent implements OnInit {
    * 
    * @param user Show Detailed Info for specific User
    */
-  view(user: User) {
+  public view(user: User) {
     this.router.navigate([config.users.name + `/${user.id}`])
   }
 

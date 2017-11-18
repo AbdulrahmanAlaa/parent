@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersComponent } from './users.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ToastModule, ToastsManager, ToastOptions } from 'ng2-toastr';
+import { UsersModule } from './users.module';
+import { HttpClientModule } from '@angular/common/http';
+import { StorageService } from '../shared/services/storage.service';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -8,9 +13,18 @@ describe('UsersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule,
+      ],
+      declarations: [
+       UsersComponent
+      ],
+      providers: [
+      ]
     })
     .compileComponents();
+    
   }));
 
   beforeEach(() => {

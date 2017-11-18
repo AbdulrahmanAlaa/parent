@@ -23,7 +23,7 @@ import { AuthService } from '../shared/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
   private ngUnsubscribe: Subject<AuthService> = new Subject();
 
   loginForm: FormGroup;
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public toastr: ToastsManager,
     private vcr: ViewContainerRef
   ) {
-        /** holds the needed html to show the toaster */
+    /** holds the needed html to show the toaster */
     this.toastr.setRootViewContainerRef(vcr);
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -43,24 +43,29 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
-  }
+  /**
+   * Authenticate the User Against the Api 
+   */
   submit() {
     if (this.loginForm.valid) {
       this.auth.authenticate(this.loginForm.value.email, this.loginForm.value.password, this.loginForm.value.rememberMe)
         .takeUntil(this.ngUnsubscribe)
         .subscribe((token) => {
           this.toastr.success("logged in successfully");
-          setTimeout(()=>{
+          setTimeout(() => {
             this.router.navigate([config.users.name]);
-          },1000)
+          }, 1000)
         }, (error) => {
-          this.toastr.error("Something went wrong! </br> Try agin later","",{enableHTML: true});          
+          this.toastr.error("Something went wrong! </br> Try agin later", "", { enableHTML: true });
           return error;
         });
 
     }
   }
+  /**
+   * Removing All the The Subscriptions When 
+   * Destroying the Component
+   */
   ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();

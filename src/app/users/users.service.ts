@@ -44,6 +44,7 @@ export class UsersService {
    * @param user User Object 
    */
   updateUser(user:User){
+    debugger;
    return this.http.put(API_URLS.USERS.EDIT(user.id),user);
   }
   /**
