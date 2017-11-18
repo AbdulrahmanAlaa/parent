@@ -11,7 +11,7 @@ import { User } from '../../shared/models/user.model';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-fdescribe('ListComponent', () => {
+describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
 
@@ -52,12 +52,19 @@ fdescribe('ListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create List Component',
+  it('should delete User',
     inject([UsersService], (usersService: UsersService) => {
-      spyOn(usersService, 'deleteUser');
+      // // spyOn(usersService, 'deleteUser');
+      // const fixture = TestBed.createComponent(ListComponent);
+      // const app = fixture.debugElement.componentInstance;
+      
+      spyOn(component, 'delete');
       let user: User = { id: 1, first_name: 'any', last_name: 'any', avatar: '', job: '' };
+      // console.log(component.delete)
       component.delete(user);
-      expect(usersService.deleteUser).toHaveBeenCalled();
+      fixture.whenStable().then(()=>{
+        expect(component.delete).toHaveBeenCalled();
+      });
     })
   );
 
